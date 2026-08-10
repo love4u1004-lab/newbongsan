@@ -1,0 +1,230 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ece8df;
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px 10px;
+  overflow-x: hidden;
+}
+
+/* 3단 전체 영역 컨테이너 */
+.hero {
+  width: min(92vw, 900px);
+  aspect-ratio: 3 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 2000px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.brochure {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  width: 33.3333%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.left { 
+  left: 0; 
+  transform-origin: right center;
+}
+
+.center { 
+  left: 33.3333%; 
+}
+
+.right { 
+  left: 66.6666%; 
+  transform-origin: left center;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  background-size: 300% 100%;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.front { 
+  background-image: url('front.jpg'); 
+}
+
+.back { 
+  background-image: url('back.jpg'); 
+  transform: rotateY(180deg); 
+}
+
+/* 
+ ==========================================
+ 1단계: front 오른쪽 패널 단독 (step-1 닫힘)
+ ==========================================
+*/
+.closed.step-1 .right {
+  z-index: 3;
+  transform: translateX(-100%) rotateY(0deg);
+  opacity: 1;
+}
+
+.closed.step-1 .center,
+.closed.step-1 .left {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 
+ ==========================================
+ 2단계: back 전체 패널 보기 (open-back)
+ ==========================================
+*/
+.open-back {
+  transform: rotateY(180deg);
+}
+
+.open-back .left,
+.open-back .center,
+.open-back .right {
+  z-index: 1;
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 
+ ==========================================
+ 3단계: front 중앙 패널 단독 (step-2 닫힘)
+ ==========================================
+*/
+.closed.step-2 {
+  transform: rotateY(0deg);
+}
+
+.closed.step-2 .center {
+  z-index: 3;
+  transform: translateX(0) rotateY(0deg);
+  opacity: 1;
+}
+
+.closed.step-2 .left,
+.closed.step-2 .right {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 
+ ==========================================
+ 4단계: front 전체 패널 보기 (open-front)
+ ==========================================
+*/
+.open-front {
+  transform: rotateY(0deg);
+}
+
+.open-front .left,
+.open-front .center,
+.open-front .right {
+  z-index: 1;
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* UI 컨트롤 */
+.caption {
+  margin-top: 16px;
+  color: #6b665d;
+  text-align: center;
+}
+
+.caption h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #3d3a34;
+  margin-bottom: 4px;
+}
+
+.caption p {
+  font-size: 0.9rem;
+}
+
+.actions { 
+  display: flex; 
+  gap: 12px; 
+  margin: 16px 0 8px; 
+}
+
+button {
+  border: none;
+  background: #5f5a50;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  background: #4a463e;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.contact {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.contact a {
+  color: #5f5a50;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.contact a:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    width: 95vw;
+  }
+  button {
+    padding: 10px 18px;
+    font-size: 0.88rem;
+  }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>봉산동 토지 리플릿</title>
+  <meta property="og:title" content="봉산동 토지 리플릿">
+  <meta property="og:description" content="터치하면 실제 리플릿처럼 펼쳐집니다.">
+  <meta property="og:image" content="front.jpg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hero">
+    <!-- 3단 접지 리플릿 -->
+    <div id="brochure" class="brochure closed step-1">
+      
+      <!-- [왼쪽 패널] -->
+      <div class="panel left">
+        <div class="face front" style="background-position: 0% 0;"></div>
+        <div class="face back" style="background-position: 100% 0;"></div>
+      </div>
+
+      <!-- [중앙 패널] -->
+      <div class="panel center">
+        <div class="face front" style="background-position: 50% 0;"></div>
+        <div class="face back" style="background-position: 50% 0;"></div>
+      </div>
+
+      <!-- [오른쪽 패널 (첫 화면 표지)] -->
+      <div class="panel right">
+        <div class="face front" style="background-position: 100% 0;"></div>
+        <div class="face back" style="background-position: 0% 0;"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="caption">
+    <h1>봉산동 토지 리플릿</h1>
+    <p>화면을 터치하거나 버튼을 눌러 순서대로 펼쳐보세요.</p>
+  </div>
+
+  <div class="actions">
+    <button id="toggleBtn" type="button">펼치기</button>
+  </div>
+
+  <div class="contact">
+    <a href="tel:010-0000-0000">전화 상담</a>
+    <a href="https://map.naver.com" target="_blank" rel="noopener noreferrer">위치 보기</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
